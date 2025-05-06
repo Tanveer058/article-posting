@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard.js";
-import { fetchArticles } from "../Services/api.js";
+import { fetchPublishedArticles } from "../Services/api.js";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
@@ -9,7 +9,7 @@ const ArticleList = () => {
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        const data = await fetchArticles();
+        const data = await fetchPublishedArticles();
         setArticles(data);
         console.log("Fetched articles:", data);
       } catch (error) {

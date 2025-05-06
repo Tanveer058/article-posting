@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -32,13 +33,15 @@ const Register = () => {
       if (response.ok) {
         setSuccess(true);
         setError(null);
-        alert("Registration successful!");
+        // alert("Registration successful!");
+        toast.success("Registration successful!");
         navigate("/login"); // Redirect to login page
       } else {
         const data = await response.json();
         setError(data.error || "Registration failed. Please try again.");
       }
     } catch (err) {
+      toast.error("Error during registration:");
       console.error("Error during registration:", err);
       setError("An error occurred. Please try again.");
     }

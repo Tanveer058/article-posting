@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,7 +34,9 @@ const Login = () => {
         setSuccess(true);
         setError(null);
         localStorage.setItem("token", data.token); // Save token to localStorage
-        alert("Login successful!");
+        // alert("Login successful!");
+        toast.success("Login successful!");
+
         navigate("/"); // Redirect to the homepage or dashboard
       } else {
         const data = await response.json();

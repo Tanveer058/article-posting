@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TextEditor = () => {
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ const TextEditor = () => {
       title,
       category,
       content,
+      status: "published",
     };
 
     const token = localStorage.getItem("token");
@@ -88,6 +91,8 @@ const TextEditor = () => {
 
       if (response.ok) {
         alert("Article published successfully!");
+        toast.success("Article published successfully!");
+        
         navigate("/");
       } else {
         alert("Failed to publish article. Please try again.");
@@ -110,6 +115,7 @@ const TextEditor = () => {
       title,
       category,
       content,
+      status: "draft",
     };
   
     const token = localStorage.getItem("token");
@@ -127,7 +133,7 @@ const TextEditor = () => {
   
       if (response.ok) {
         alert("Article saved as draft successfully!");
-        navigate("/drafts"); // Redirect to the drafts page
+        navigate("/drafts");
       } else {
         alert("Failed to save article as draft. Please try again.");
       }
@@ -138,37 +144,41 @@ const TextEditor = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 bg-white shadow-lg">
-      <input
-        type="text"
-        placeholder="Article Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="w-full p-3 text-xl font-semibold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+    <>
+      <h1 className="text-2xl font-bold my-10 text-center">Create New Article</h1>
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="mt-3 p-2 w-full border border-gray-300 rounded-md"
-      >
-        <option value="">Select Category</option>
-        <option value="Technology">Technology</option>
-        <option value="Health">Health</option>
-        <option value="Lifestyle">Lifestyle</option>
-      </select>
+      <div className="max-w-3xl mx-auto p-4 bg-white shadow-lg">
+        <input
+          type="text"
+          placeholder="Article Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full p-3 text-xl font-semibold border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <div ref={editorRef} className="h-80 mt-3 border border-gray-300 rounded-md shadow-sm" />
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="mt-3 p-2 w-full border border-gray-300 rounded-md"
+        >
+          <option value="">Select Category</option>
+          <option value="Technology">Technology</option>
+          <option value="Health">Health</option>
+          <option value="Lifestyle">Lifestyle</option>
+        </select>
 
-      <div className="mt-4 flex justify-end">
-        <button className="mr-4 px-5 py-2 bg-gray-300 rounded-md" onClick={draftArticle}>
-          Save as Draft
-        </button>
-        <button className="px-5 py-2 bg-green-500 text-white rounded-md" onClick={publishArticle}>
-          Publish
-        </button>
+        <div ref={editorRef} className="h-80 mt-3 border border-gray-300 rounded-md shadow-sm" />
+
+        <div className="mt-4 flex justify-end">
+          <button className="mr-4 px-5 py-2 bg-gray-300 rounded-md" onClick={draftArticle}>
+            Save as Draft
+          </button>
+          <button className="px-5 py-2 bg-green-500 text-white rounded-md" onClick={publishArticle}>
+            Publish
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
