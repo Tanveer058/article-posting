@@ -8,7 +8,7 @@ const Footer = () => {
       </p>
       <p className="text-sm mt-2">
         Developed by <span className="font-bold">Tanveer Hussain</span>, MERN Stack Intern at 
-        <span className="font-bold"> iCreativez Technologies, Nawabshah</span>.
+        <span className="font-bold"> <a target="/" href="https://www.icreativez.com/">iCreativez Technologies, Nawabshah</a> </span>.
       </p>
     </footer>
   );

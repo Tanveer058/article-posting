@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import articleRouter from "./routes/articleRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
 
 const app = express();
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api", articleRouter);
 app.use("/api/auth", authRouter);
+app.use("/api", userRouter);
 
 
 // Start the Server

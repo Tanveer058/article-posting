@@ -22,7 +22,6 @@ const TextEditor = () => {
 
   useEffect(() => {
     if (!quillInstance.current) {
-      // Initialize Quill only if it hasn't been initialized
       quillInstance.current = new Quill(editorRef.current, {
         theme: "snow",
         modules: {
@@ -64,7 +63,8 @@ const TextEditor = () => {
   }, [BASE_URL]);
 
   const publishArticle = async () => {
-    const content = quillInstance.current.getText();
+    const content = quillInstance.current.root.innerHTML;
+    console.log("Content:", content);
     if (!title || !category || !content) {
       alert("Please fill in all fields before publishing.");
       return;
@@ -105,7 +105,8 @@ const TextEditor = () => {
   };
 
   const draftArticle = async () => {
-    const content = quillInstance.current.getText();
+    const content = quillInstance.current.root.innerHTML;
+    console.log("Content:", content);
     if (!title || !category || !content) {
       alert("Please fill in all fields before saving as draft.");
       return;

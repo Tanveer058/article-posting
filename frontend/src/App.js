@@ -13,6 +13,7 @@ import EditArticle from "./Pages/editArticle.jsx";
 import Navbar from "./components/navbar.jsx";
 import PublicRoute from "./publicRoute.js";
 import Footer from "./components/footer.jsx";
+import ProfilePage from "./Pages/profilePage.jsx";
 
 function App() {
   return (
@@ -43,6 +44,12 @@ function App() {
             <Route path="/edit-article/:id" element={
               <PrivateRoute>
                 <EditArticle />
+              </PrivateRoute>
+            } />
+
+            <Route path="/profile" element={
+              <PrivateRoute>
+                <ProfilePage />
               </PrivateRoute>
             } />
 

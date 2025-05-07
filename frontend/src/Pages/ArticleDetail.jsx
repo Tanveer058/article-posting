@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ArticleDetail = () => {
-  const { id } = useParams(); // Get the article ID from the URL
+  const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -41,7 +41,7 @@ const ArticleDetail = () => {
       <p className="text-gray-600 mb-2">Category: {article.category}</p>
       <p className="text-gray-500 mb-4">Author: {article.author.name}</p>
       <div
-        className="text-gray-800 leading-relaxed"
+        className="prose text-gray-800 leading-relaxed"
         dangerouslySetInnerHTML={{ __html: article.content }}
       ></div>
     </div>

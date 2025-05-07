@@ -33,9 +33,8 @@ const Register = () => {
       if (response.ok) {
         setSuccess(true);
         setError(null);
-        // alert("Registration successful!");
         toast.success("Registration successful!");
-        navigate("/login"); // Redirect to login page
+        navigate("/login");
       } else {
         const data = await response.json();
         setError(data.error || "Registration failed. Please try again.");

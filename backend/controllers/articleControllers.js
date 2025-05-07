@@ -73,7 +73,6 @@ export const updateArticle = async (req, res) => {
 
     const updatedArticle = await article.save();
     res.json(updatedArticle);
-    console.log("Article updated with id:", req.params.id);
   } catch (error) {
     console.error("Error updating article:", error);
     res.status(500).json({ error: "Error updating article" });
@@ -94,7 +93,6 @@ export const deleteArticle = async (req, res) => {
 
     await Article.findByIdAndDelete(req.params.id);
     res.json({ message: "Article deleted" });
-    console.log("Article deleted with id:", req.params.id);
   } catch (error) {
     console.error("Error deleting article:", error);
     res.status(500).json({ error: "Error deleting article" });
@@ -116,7 +114,7 @@ export const saveDraft = async (req, res) => {
       title,
       category,
       content,
-      author: req.userId, // Assuming you have user authentication
+      author: req.userId,
       status: "draft",
     });
 
@@ -187,7 +185,6 @@ export const deleteDraft = async (req, res) => {
 
     await Article.findByIdAndDelete(req.params.id);
     res.json({ message: "Draft deleted" });
-    console.log("Draft deleted with id:", req.params.id);
   } catch (error) {
     console.error("Error deleting draft:", error);
     res.status(500).json({ error: "Error deleting draft" });

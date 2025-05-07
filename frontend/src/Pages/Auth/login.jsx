@@ -33,11 +33,10 @@ const Login = () => {
         const data = await response.json();
         setSuccess(true);
         setError(null);
-        localStorage.setItem("token", data.token); // Save token to localStorage
-        // alert("Login successful!");
+        localStorage.setItem("token", data.token);
         toast.success("Login successful!");
 
-        navigate("/"); // Redirect to the homepage or dashboard
+        navigate("/");
       } else {
         const data = await response.json();
         setError(data.error || "Login failed. Please try again.");

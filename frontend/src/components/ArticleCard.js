@@ -48,7 +48,12 @@ const ArticleCard = ({ article }) => {
     <div className="border p-4 rounded-md shadow-lg mb-4">
       <h2 className="text-xl font-bold">{article.title}</h2>
       <p className="text-gray-600">{article.category}</p>
-      <p className="mt-2">{article.content.substring(0, 100)}...</p>
+      <div
+        className="mt-2"
+        dangerouslySetInnerHTML={{
+          __html: `${article.content.substring(0, 100)}...`,
+        }}
+      ></div>
       <Link
           to={`/article/${article._id}`}
           className="text-blue-500 hover:underline mt-2 inline-block"
