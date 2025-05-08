@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: article-posting-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    plan: free
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://zardaritanveer058:T9RsBTbhgNrxj7zp@cluster0.bx2tc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+      
